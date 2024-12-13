@@ -62,4 +62,4 @@ plot(_smoothedma8, color = close < _smoothedma8 ? color.new(#af00ff, 10) : color
 plot(_smoothedma9, color = close < _smoothedma9 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
 plot(_smoothedma10, color = close < _smoothedma10 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
 plot(_smoothedma11, color = close < _smoothedma11 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma12, color = close < _smoothedma12 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
+plot(_smoothedma12, color = close < _smoothedma12 ? color.new(#ff0000, 10) : color.new(#0020ff, 0), linewidth = 1)
