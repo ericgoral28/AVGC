@@ -2,6 +2,7 @@
 // © LvNThL
 
 //@version=5
+
 indicator("AVGC", overlay = true)
 import TradingView/ta/7
 
@@ -24,14 +25,41 @@ ma21(source, length, type) =>
 
 string typeMA111 = input.string("EMA", "Moving Average Type", ["EMA", "SMA", "RMA", "VWMA", "DEMA", "HMA", "WMA"])
 
-_ma1 = ma11(close, input.int(150, "Moving Average Period 1", minval = 1, maxval = 4999, step = 1), typeMA111)
-_ma2 = ma11(close, input.int(450, "Moving Average Period 2", minval = 1, maxval = 4999, step = 1), typeMA111)
-_ma3 = ma11(close, input.int(900, "Moving Average Period 3", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma1 = ma11(close, input.int(8, "Moving Average Period 1", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma2 = ma11(close, input.int(21, "Moving Average Period 2", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma3 = ma11(close, input.int(34, "Moving Average Period 3", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma4 = ma11(close, input.int(55, "Moving Average Period 4", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma5 = ma11(close, input.int(89, "Moving Average Period 5", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma6 = ma11(close, input.int(144, "Moving Average Period 6", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma7 = ma11(close, input.int(233, "Moving Average Period 7", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma8 = ma11(close, input.int(377, "Moving Average Period 8", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma9 = ma11(close, input.int(610, "Moving Average Period 9", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma10 = ma11(close, input.int(987, "Moving Average Period 10", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma11 = ma11(close, input.int(1597, "Moving Average Period 11", minval = 1, maxval = 4999, step = 1), typeMA111)
+_ma12 = ma11(close, input.int(2584, "Moving Average Period 12", minval = 1, maxval = 4999, step = 1), typeMA111)
 
 _smoothedma1 = ma21(_ma1, smoothingLength1, typeMA21)
 _smoothedma2 = ma21(_ma2, smoothingLength1, typeMA21)
 _smoothedma3 = ma21(_ma3, smoothingLength1, typeMA21)
+_smoothedma4 = ma21(_ma4, smoothingLength1, typeMA21)
+_smoothedma5 = ma21(_ma5, smoothingLength1, typeMA21)
+_smoothedma6 = ma21(_ma6, smoothingLength1, typeMA21)
+_smoothedma7 = ma21(_ma7, smoothingLength1, typeMA21)
+_smoothedma8 = ma21(_ma8, smoothingLength1, typeMA21)
+_smoothedma9 = ma21(_ma9, smoothingLength1, typeMA21)
+_smoothedma10 = ma21(_ma10, smoothingLength1, typeMA21)
+_smoothedma11 = ma21(_ma11, smoothingLength1, typeMA21)
+_smoothedma12 = ma21(_ma12, smoothingLength1, typeMA21)
 
 plot(_smoothedma1, color = close < _smoothedma1 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
 plot(_smoothedma2, color = close < _smoothedma2 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
 plot(_smoothedma3, color = close < _smoothedma3 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma4, color = close < _smoothedma4 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma5, color = close < _smoothedma5 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma6, color = close < _smoothedma6 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma7, color = close < _smoothedma7 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma8, color = close < _smoothedma8 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma9, color = close < _smoothedma9 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma10, color = close < _smoothedma10 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma11, color = close < _smoothedma11 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
+plot(_smoothedma12, color = close < _smoothedma12 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 2)
