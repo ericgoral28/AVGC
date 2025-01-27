@@ -1,13 +1,11 @@
 // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
 // © LvNThL
-
 //@version=5
 
 indicator("AVGC", overlay = true)
 import TradingView/ta/7
 
 string typeMA21 = string("EMA")
-
 int smoothingLength1 = int(9)
 
 ma11(source, length, type) =>
@@ -21,9 +19,9 @@ ma11(source, length, type) =>
         "WMA" => ta.wma(source, length)
 ma21(source, length, type) =>
     switch type
-        "EMA" => ta.ema(source, length)
+        "EMA" => ta.ema(source, length) 
 
-string typeMA111 = input.string("EMA", "Moving Average Type", ["EMA", "SMA", "RMA", "VWMA", "DEMA", "HMA", "WMA"])
+string typeMA111 = input.string("EMA", "Moving Average Type", ["EMA", "SMA", "RMA", "VWMA", "DEMA", "HMA", "WMA"], group = "User Input")
 
 _ma1 = ma11(close, input.int(8, "Moving Average Period 1", minval = 1, maxval = 4999, step = 1), typeMA111)
 _ma2 = ma11(close, input.int(21, "Moving Average Period 2", minval = 1, maxval = 4999, step = 1), typeMA111)
@@ -51,15 +49,97 @@ _smoothedma10 = ma21(_ma10, smoothingLength1, typeMA21)
 _smoothedma11 = ma21(_ma11, smoothingLength1, typeMA21)
 _smoothedma12 = ma21(_ma12, smoothingLength1, typeMA21)
 
-plot(_smoothedma1, color = close < _smoothedma1 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma2, color = close < _smoothedma2 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma3, color = close < _smoothedma3 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma4, color = close < _smoothedma4 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma5, color = close < _smoothedma5 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma6, color = close < _smoothedma6 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma7, color = close < _smoothedma7 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma8, color = close < _smoothedma8 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma9, color = close < _smoothedma9 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma10, color = close < _smoothedma10 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma11, color = close < _smoothedma11 ? color.new(#af00ff, 10) : color.new(#00ff80, 0), linewidth = 1)
-plot(_smoothedma12, color = close < _smoothedma12 ? color.new(#ff0000, 10) : color.new(#0020ff, 0), linewidth = 1)
+string Themetype = string("Dark")
+var color _dark1 = color.new(#af00ff, 10)
+var color _dark2 = color.new(#00ff80, 0)
+var color _light1 =color.new(#000000, 10)
+var color _light2 = color.new(#24a83e, 0)
+
+colortheme1(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma1 ? _dark1 : close > _smoothedma1 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma1 ? _light1 : close > _smoothedma1 ? _light2 : na
+colortheme2(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma2 ? _dark1 : close > _smoothedma2 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma2 ? _light1 : close > _smoothedma2 ? _light2 : na
+colortheme3(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma3 ? _dark1 : close > _smoothedma3 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma3 ? _light1 : close > _smoothedma3 ? _light2 : na
+colortheme4(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma4 ? _dark1 : close > _smoothedma4 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma4 ? _light1 : close > _smoothedma4 ? _light2 : na
+colortheme5(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma5 ? _dark1 : close > _smoothedma5 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma5 ? _light1 : close > _smoothedma5 ? _light2 : na
+colortheme6(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma6 ? _dark1 : close > _smoothedma6 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma6 ? _light1 : close > _smoothedma6 ? _light2 : na
+colortheme7(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma7 ? _dark1 : close > _smoothedma7 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma7 ? _light1 : close > _smoothedma7 ? _light2 : na
+colortheme8(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma8 ? _dark1 : close > _smoothedma8 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma8 ? _light1 : close > _smoothedma8 ? _light2 : na
+colortheme9(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma9 ? _dark1 : close > _smoothedma9 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma9 ? _light1 : close > _smoothedma9 ? _light2 : na
+colortheme10(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma10 ? _dark1 : close > _smoothedma10 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma10 ? _light1 : close > _smoothedma10 ? _light2 : na
+colortheme11(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma11 ? _dark1 : close > _smoothedma11 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma11 ? _light1 : close > _smoothedma11 ? _light2 : na
+colortheme12(type) =>
+    switch type
+        "Dark" => 
+            close < _smoothedma12 ? _dark1 : close > _smoothedma12 ? _dark2 : na
+        "Light" => 
+            close < _smoothedma12 ? _light1 : close > _smoothedma12 ? _light2 : na
+
+string colortheme = input.string("Dark", "Color Theme", ["Light", "Dark"], group = "User Input")
+
+plot(_smoothedma1, color = colortheme1(colortheme), linewidth = 1)
+plot(_smoothedma2, color = colortheme2(colortheme), linewidth = 1)
+plot(_smoothedma3, color = colortheme3(colortheme), linewidth = 1)
+plot(_smoothedma4, color = colortheme4(colortheme), linewidth = 1)
+plot(_smoothedma5, color = colortheme5(colortheme), linewidth = 1)
+plot(_smoothedma6, color = colortheme6(colortheme), linewidth = 1)
+plot(_smoothedma7, color = colortheme7(colortheme), linewidth = 1)
+plot(_smoothedma8, color = colortheme8(colortheme), linewidth = 1)
+plot(_smoothedma9, color = colortheme9(colortheme), linewidth = 1)
+plot(_smoothedma10, color = colortheme10(colortheme), linewidth = 1)
+plot(_smoothedma11, color = colortheme11(colortheme), linewidth = 1)
+plot(_smoothedma12, color = colortheme12(colortheme), linewidth = 1)
+
