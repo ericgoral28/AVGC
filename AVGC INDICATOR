@@ -153,6 +153,6 @@ plot(_simple ? na : median10, color = get_plot_color(get_trigger(median10), bull
 plot(median11,                color = get_plot_color(get_trigger(median11), bullColor, bearColor), linewidth = _thickness, title = "MA 11")
 
 // Bollinger Bands
-p2 = plot(lower, "BB Lower", color= bullColor, display = _bolly ? display.all : display.none)
-p1 = plot(upper, "BB Upper", color= bearColor, display = _bolly ? display.all : display.none)
+p2 = plot(lower, "BB Lower", color= bullColor, display = _bolly ? display.all : display.none, linewidth = _thickness)
+p1 = plot(upper, "BB Upper", color= bearColor, display = _bolly ? display.all : display.none, linewidth = _thickness)
 fill(p1, p2, title = "BB Background", color=color.new(#0f00ff, 90), display = _bolly ? display.all : display.none)
