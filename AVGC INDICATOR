@@ -13,6 +13,7 @@ typeMA = input.string("SMA", "MA Type", ["SMA", "EMA", "RMA", "VWMA", "DEMA", "T
 colorTheme = input.string("Neon", "Color Theme", ["Neon", "Ocean", "Sunset", "Forest", "Monochrome", "Classic Light"])
 _thickness = input.int(1, "Line Thickness", minval = 1, maxval = 4, step = 1)
 _simple = input.bool(false, "Simplified Moving Averages")
+_bolly = input.bool(true, "Bollinger Bands")
 // Lookback Periods (Fibonacci sequence by default)
 _lb1  = input.int(5,   "Period 1",  minval = 4, maxval = 4999)
 _lb2  = input.int(8,   "Period 2",  minval = 4, maxval = 4999)
@@ -104,6 +105,15 @@ median9  = get_median(_lb9,  typeMA)
 median10 = get_median(_lb10, typeMA)
 median11 = get_median(_lb11, typeMA)
 
+
+//==================================
+//Additions
+//==================================
+mult = input.float(4.0, minval=0.001, maxval=50, title="Standard Deviation", group ="Bollinger Bands")
+dev = mult * ta.stdev(close, _lb11)
+upper = median11 + dev
+lower = median11 - dev
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // PLOTS
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -119,3 +129,7 @@ plot(_simple ? na : median8,  color = get_plot_color(get_trigger(median8),  bull
 plot(_simple ? na : median9,  color = get_plot_color(get_trigger(median9),  bullColor, bearColor), linewidth = _thickness, title = "MA 9")
 plot(_simple ? na : median10, color = get_plot_color(get_trigger(median10), bullColor, bearColor), linewidth = _thickness, title = "MA 10")
 plot(median11, color = get_plot_color(get_trigger(median11), bullColor, bearColor), linewidth = _thickness, title = "MA 11")
+
+p2 = plot(lower, "Lower", color= bullColor, display = _bolly ? display.all : display.none)
+p1 = plot(upper, "Upper", color= bearColor, display = _bolly ? display.all : display.none)
+fill(p1, p2, title = "Background", color=color.new(#0f00ff, 90), display = _bolly ? display.all : display.none)
